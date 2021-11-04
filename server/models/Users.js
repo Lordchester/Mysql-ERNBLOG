@@ -8,16 +8,17 @@ module.exports = (sequelize, DataTypes) => {
 			type: DataTypes.STRING,
 			allowNull: false,
 		},
-		// username: {
-		// 	type: DataTypes.STRING,
-		// 	allowNull: false,
-		// },
 	});
 
 	Users.associate = (models) => {
+		Users.hasMany(models.Likes, {
+			onDelete: 'cascade',
+		});
+
 		Users.hasMany(models.Posts, {
 			onDelete: 'cascade',
 		});
 	};
+
 	return Users;
 };
